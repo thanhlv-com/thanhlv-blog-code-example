@@ -1,0 +1,64 @@
+version: '2'
+services:
+  zookeeper-1:
+    image: confluentinc/cp-zookeeper:7.4.4
+    container_name: "zookeeper-1"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22181:2181
+    volumes:
+      - ./data/zoo_1/data:/var/lib/zookeeper/data
+      - ./data/zoo_1/log:/var/lib/zookeeper/log
+  kafka-1:
+    image: confluentinc/cp-kafka:7.4.4
+    container_name: "kafka-1"
+    depends_on:
+      - zookeeper-1
+    ports:
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ./data/broker-1/data:/var/lib/kafka/data
+  kafka-2:
+    image: confluentinc/cp-kafka:7.4.4
+    container_name: "kafka-2"
+    depends_on:
+      - zookeeper-1
+    ports:
+      - 29093:29093
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-2:9092,PLAINTEXT_HOST://localhost:29093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    volumes:
+      - ./data/broker-2/data:/var/lib/kafka/data
+  init-kafka:
+    image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - kafka-1
+      - kafka-2
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: |
+      "
+      # sleep 15
+      # sleep 15
+      # blocks until kafka is reachable
+      kafka-topics --bootstrap-server kafka-1:9092 --list
+      
+      echo -e 'Creating kafka topics'
+      kafka-topics --bootstrap-server kafka-2:9091,kafka-2:9092 --create --if-not-exists --topic my-topic-2 --replication-factor 2 --partitions 1
+      
+      echo -e 'Successfully created the following topics:'
+      kafka-topics --bootstrap-server kafka-1:9092 --list
+      "
