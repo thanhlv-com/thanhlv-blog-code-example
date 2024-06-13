@@ -28,7 +28,7 @@ public class ConsumerMulGroup {
             // create consumer
             KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
-            consumer.subscribe(Arrays.asList("my-topic-2"));
+            consumer.subscribe(Arrays.asList("my-topic-1"));
             // poll for new data
             while (true) {
                 ConsumerRecords<String, String> records =
@@ -42,7 +42,7 @@ public class ConsumerMulGroup {
 
     public static Properties createPropertiesByGroupId(String groupId) {
         final var props = new Properties();
-        props.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, "java-producer");
+        props.setProperty(ConsumerConfig.CLIENT_ID_CONFIG, "java-Consumer");
         props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:29092");
         props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
