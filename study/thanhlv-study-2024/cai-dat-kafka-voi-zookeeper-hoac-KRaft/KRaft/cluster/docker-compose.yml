@@ -91,6 +91,10 @@ services:
       - example-network
   init-kafka:
     image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - kafka1
+      - kafka2
+      - kafka3
     networks:
       - example-network
     entrypoint: [ '/bin/sh', '-c' ]
