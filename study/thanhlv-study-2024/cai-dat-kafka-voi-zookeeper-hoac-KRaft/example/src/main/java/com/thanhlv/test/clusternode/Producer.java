@@ -32,6 +32,7 @@ public class Producer {
                     message = br.readLine().trim();
                     final var messageProducerRecord = new ProducerRecord<>(
                             "my-topic-2",     //topic name
+                            2,                      // partition
                             "key-" + message,            // key
                             "message: " + message        // value
                     );
