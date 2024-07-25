@@ -109,7 +109,7 @@ services:
       kafka-topics --bootstrap-server kafka1:19092 --create --if-not-exists --topic my-topic-2 --replication-factor 2 --partitions 5
       
       # bytes là hệ nhị phân
-      kafka-topics --bootstrap-server kafka1:19092 --create --if-not-exists --topic topic-demo-config --replication-factor 1 --partitions 1 --config segment.bytes=1048576 retention.ms= 123400000
+      kafka-topics --bootstrap-server kafka1:19092 --create --if-not-exists --topic topic-demo-config --replication-factor 1 --partitions 1 --config segment.bytes=1048576 --config retention.ms=123400000
       
       echo -e 'Successfully created the following topics:'
       kafka-topics --bootstrap-server kafka1:19092 --list
