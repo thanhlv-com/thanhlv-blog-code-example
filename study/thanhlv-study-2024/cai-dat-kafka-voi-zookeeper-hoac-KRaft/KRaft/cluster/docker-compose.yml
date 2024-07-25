@@ -100,13 +100,16 @@ services:
     entrypoint: [ '/bin/sh', '-c' ]
     command: |
       "
-      # sleep 15
+       sleep 30
       # sleep 15
       # blocks until kafka is reachable
       kafka-topics --bootstrap-server kafka1:19092 --list
       
       echo -e 'Creating kafka topics'
       kafka-topics --bootstrap-server kafka1:19092 --create --if-not-exists --topic my-topic-2 --replication-factor 2 --partitions 5
+      
+      # bytes là hệ nhị phân
+      kafka-topics --bootstrap-server kafka1:19092 --create --if-not-exists --topic topic-demo-config --replication-factor 1 --partitions 1 --config segment.bytes=1048576
       
       echo -e 'Successfully created the following topics:'
       kafka-topics --bootstrap-server kafka1:19092 --list
