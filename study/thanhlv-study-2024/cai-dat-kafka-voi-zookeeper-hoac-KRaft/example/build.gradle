@@ -19,6 +19,11 @@ repositories {
 
 dependencies {
 	implementation 'org.apache.kafka:kafka-clients:3.4.0'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	compileOnly 'org.slf4j:jul-to-slf4j'
+	compileOnly 'org.slf4j:slf4j-api'
+	implementation 'org.slf4j:slf4j-simple'
 }
 
 sourceCompatibility = JavaVersion.VERSION_21

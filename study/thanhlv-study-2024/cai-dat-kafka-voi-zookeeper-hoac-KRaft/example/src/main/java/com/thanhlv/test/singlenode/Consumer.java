@@ -11,11 +11,11 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class Consumer {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         newThreadConsumer(createPropertiesByGroupId("1"),"app-1");
         // poll for new data
         while (true) {
-
+            Thread.sleep(100);
         }
     }
 

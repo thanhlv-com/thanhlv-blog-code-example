@@ -1,5 +1,6 @@
 package com.thanhlv.test.singlenode;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Properties;
 
+@Slf4j
 public class Producer {
 
     public static void main(String[] args) throws IOException {
@@ -26,7 +28,7 @@ public class Producer {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));) {
                 String message;
                 do {
-                    System.out.print("Enter message: ");
+                    log.info("Enter message: ");
                     message = br.readLine().trim();
                     final var messageProducerRecord = new ProducerRecord<>(
                             "my-topic-2",     //topic name
