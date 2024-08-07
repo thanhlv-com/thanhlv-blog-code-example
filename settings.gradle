@@ -1,0 +1,4 @@
+rootProject.name = "thanhlv-blog-code-example"
+
+include("study-thanhlv-study-2024-cai-dat-kafka-voi-zookeeper-hoac-KRaft-example")
+project(":study-thanhlv-study-2024-cai-dat-kafka-voi-zookeeper-hoac-KRaft-example").projectDir = file("study/thanhlv-study-2024/cai-dat-kafka-voi-zookeeper-hoac-KRaft/example")
