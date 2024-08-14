@@ -73,7 +73,7 @@ services:
     entrypoint: [ '/bin/sh', '-c' ]
     command: |
       "
-      # sleep 15
+       sleep 30
       # sleep 15
       # blocks until kafka is reachable
       kafka-topics --bootstrap-server kafka-1:9092 --list
