@@ -2,3 +2,7 @@ rootProject.name = "thanhlv-blog-code-example"
 
 include("study-thanhlv-study-2024-cai-dat-kafka-voi-zookeeper-hoac-KRaft-example")
 project(":study-thanhlv-study-2024-cai-dat-kafka-voi-zookeeper-hoac-KRaft-example").projectDir = file("study/thanhlv-study-2024/cai-dat-kafka-voi-zookeeper-hoac-KRaft/example")
+
+
+include(":study-thanhlv-study-2024-message-queue-example")
+project(":study-thanhlv-study-2024-message-queue-example").projectDir = file("study/thanhlv-study-2024/message-queue")
