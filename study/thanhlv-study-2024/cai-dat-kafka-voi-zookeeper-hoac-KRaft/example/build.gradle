@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.apache.kafka:kafka-clients:3.4.0'
+	implementation 'org.apache.kafka:kafka-clients:3.8.0'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.slf4j:jul-to-slf4j'
