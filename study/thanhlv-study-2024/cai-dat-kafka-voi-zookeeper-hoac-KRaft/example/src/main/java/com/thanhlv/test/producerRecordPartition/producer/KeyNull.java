@@ -29,12 +29,11 @@ public class KeyNull {
 
                 while (true) {
                     log.info("Enter number random message: ");
+                    String number = br.readLine().trim();
                     Long start = System.currentTimeMillis();
                     log.info("Start: {} ms",start);
-                    String number = br.readLine().trim();
-
                     final var messageProducerRecord = new ProducerRecord<>(
-                            "my-topic-2",     //topic name
+                            "topic-rep-1-partition-10",     //topic name
                             UUID.randomUUID().toString()        // value
                     );
                     for (int i = 0; i < Integer.parseInt(number); i++) {
