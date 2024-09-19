@@ -18,10 +18,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: "1"
+          cpus: "0.1"
           memory: 1g
         reservations:
-          cpus: "1"
+          cpus: "0.1"
           memory: 1g
     environment:
       KAFKA_LISTENERS: BROKER://kafka1:19092,EXTERNAL://kafka1:29092,CONTROLLER://kafka1:9093
