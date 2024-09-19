@@ -3,6 +3,7 @@ package com.thanhlv.test.clusternode;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.record.DefaultRecordBatch;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.BufferedReader;

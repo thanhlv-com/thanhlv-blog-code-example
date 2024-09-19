@@ -22,21 +22,27 @@ public class KeyNull {
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // Khi tong so luong data gui = BATCH_SIZE_CONFIG thi se tinh toan lai partition moi
-        props.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, "10000");
+        props.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, "20000");
 
         try (var producer = new KafkaProducer<Object, String>(props)) {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in));) {
 
                 while (true) {
                     log.info("Enter number random message: ");
+                    Long start = System.currentTimeMillis();
+                    log.info("Start: {} ms",start);
                     String number = br.readLine().trim();
+
+                    final var messageProducerRecord = new ProducerRecord<>(
+                            "my-topic-2",     //topic name
+                            UUID.randomUUID().toString()        // value
+                    );
                     for (int i = 0; i < Integer.parseInt(number); i++) {
-                        final var messageProducerRecord = new ProducerRecord<>(
-                                "my-topic-2",     //topic name
-                                UUID.randomUUID().toString()        // value
-                        );
                         producer.send(messageProducerRecord);
                     }
+                    Long end = System.currentTimeMillis();
+                    log.info("END: {} ms and end - start = {}",end,end - start);
+
                 }
             }
         }
