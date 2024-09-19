@@ -42,7 +42,7 @@ public class KeyNull {
                     );
                     for (int i = 0; i < Integer.parseInt(number); i++) {
                         producer.send(messageProducerRecord);
-                        Thread.sleep(1);
+                        Thread.sleep(5);
                     }
                     Long end = System.currentTimeMillis();
                     log.info("END: {} ms and end - start = {}",end,end - start);
