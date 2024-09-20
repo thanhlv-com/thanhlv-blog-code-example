@@ -39,8 +39,9 @@ public class KeyNull {
                     );
                     Integer numberSend = Integer.parseInt(number);
                     CountDownLatch countDownLatch=new CountDownLatch(numberSend);
-                    for (int i = 0; i < Integer.parseInt(number); i++) {
+                    for (int i = 0; i < numberSend; i++) {
                         producer.send(messageProducerRecord, (metadata, exception) -> countDownLatch.countDown());
+                        Thread.sleep(5);
                     }
                     countDownLatch.await();
                     Long end = System.currentTimeMillis();
