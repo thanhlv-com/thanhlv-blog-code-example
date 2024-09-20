@@ -2,11 +2,7 @@ package com.thanhlv.test.producerRecordPartition.producer;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.Metric;
-import org.apache.kafka.common.MetricName;
+import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.BufferedReader;
@@ -15,6 +11,7 @@ import java.io.InputStreamReader;
 import java.util.Map;
 import java.util.Properties;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
 
 @Slf4j
 public class KeyNull {
@@ -40,10 +37,12 @@ public class KeyNull {
                             "topic-rep-1-partition-10",     //topic name
                             UUID.randomUUID().toString()        // value
                     );
+                    Integer numberSend = Integer.parseInt(number);
+                    CountDownLatch countDownLatch=new CountDownLatch(numberSend);
                     for (int i = 0; i < Integer.parseInt(number); i++) {
-                        producer.send(messageProducerRecord);
-                        Thread.sleep(5);
+                        producer.send(messageProducerRecord, (metadata, exception) -> countDownLatch.countDown());
                     }
+                    countDownLatch.await();
                     Long end = System.currentTimeMillis();
                     log.info("END: {} ms and end - start = {}",end,end - start);
                 }

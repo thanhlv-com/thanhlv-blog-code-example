@@ -14,15 +14,11 @@
         </encoder>
     </appender>
 
-    <!-- Async appender giúp ghi log bất đồng bộ -->
-    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+    <logger  level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
-    </appender>
-
+    </logger>
     <!-- Logger root cho toàn bộ ứng dụng -->
     <root level="ALL">
-        <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
 </configuration>
