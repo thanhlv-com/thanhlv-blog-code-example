@@ -25,7 +25,7 @@ public class KeyNullLoopDelay {
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.BATCH_SIZE_CONFIG, "5000");
         // 5s
-        props.setProperty(ProducerConfig.LINGER_MS_CONFIG, "5000");
+        props.setProperty(ProducerConfig.LINGER_MS_CONFIG, "15000");
 
         try (var producer = new KafkaProducer<Object, String>(props)) {
             while (true) {
@@ -34,12 +34,12 @@ public class KeyNullLoopDelay {
                         // 36 byte
                         UUID.randomUUID().toString()        // value
                 );
-                Integer numberSend = 114;
+                Integer numberSend = 113;
                 for (int i = 1; i <= numberSend; i++) {
                     producer.send(messageProducerRecord);
                 }
                 // 10s
-                Thread.sleep(10000);
+                Thread.sleep(30000);
             }
         }
     }
