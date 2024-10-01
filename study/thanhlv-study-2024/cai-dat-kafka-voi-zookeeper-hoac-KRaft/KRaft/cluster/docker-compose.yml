@@ -162,7 +162,7 @@ services:
       kafka-topics --bootstrap-server kafka1:19091 --create --if-not-exists --topic topic-demo-config --replication-factor 1 --partitions 1 --config segment.bytes=1048576 --config retention.ms=123400000
             
       # retention , 300000=5 phut, retention.bytes = 100MB
-      kafka-topics --bootstrap-server kafka1:19091 --create --if-not-exists --topic topic-retention-demo --replication-factor 1 --partitions 10 --config retention.ms=300000 --config retention.bytes=104857600
+      kafka-topics --bootstrap-server kafka1:19091 --create --if-not-exists --topic topic-retention-demo --replication-factor 1 --partitions 10 --config cleanup.policy=compact,delete --config min.cleanable.dirty.ratio=0.5 --config retention.ms=300000 --config retention.bytes=104857600
       
       echo -e 'Successfully created the following topics:'
       kafka-topics --bootstrap-server kafka1:19091 --list
