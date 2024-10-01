@@ -35,8 +35,8 @@ services:
       KAFKA_METADATA_LOG_MAX_RECORD_BYTES_BETWEEN_SNAPSHOTS: 2800
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
       CLUSTER_ID: 'LLvEj5aqR46S0qSIwFUhyw'
-   # volumes:
-   #   - ./data/broker-1/data:/var/lib/kafka/data
+    volumes:
+      - ./data/broker-1/data:/tmp/kraft-combined-logs
     command: "bash -c '/etc/confluent/docker/run'"
     networks:
       - example-network
@@ -68,7 +68,7 @@ services:
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
       CLUSTER_ID: 'LLvEj5aqR46S0qSIwFUhyw'
   #  volumes:
-   #   - ./data/broker-2/data:/var/lib/kafka/data
+   #   - ./data/broker-2/data:/tmp/kraft-combined-logs
     command: "bash -c '/etc/confluent/docker/run'"
     networks:
       - example-network
@@ -100,7 +100,7 @@ services:
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
       CLUSTER_ID: 'LLvEj5aqR46S0qSIwFUhyw'
   #  volumes:
-  #    - ./data/broker-3/data:/var/lib/kafka/data
+  #    - ./data/broker-3/data:/tmp/kraft-combined-logs
     command: "bash -c '/etc/confluent/docker/run'"
     networks:
       - example-network
@@ -131,7 +131,7 @@ services:
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
       CLUSTER_ID: 'LLvEj5aqR46S0qSIwFUhyw'
   #  volumes:
-  #    - ./data/broker-3/data:/var/lib/kafka/data
+  #    - ./data/broker-3/data:/tmp/kraft-combined-logs
     command: "bash -c '/etc/confluent/docker/run'"
     networks:
       - example-network
