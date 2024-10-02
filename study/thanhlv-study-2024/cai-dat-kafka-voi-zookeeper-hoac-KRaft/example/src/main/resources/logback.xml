@@ -2,7 +2,7 @@
     <!-- Console appender cấu hình để ghi log ra console -->
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} 213123 123 123 %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
@@ -14,7 +14,7 @@
         </encoder>
     </appender>
 
-    <logger  level="DEBUG" additivity="false">
+    <logger name="."  level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
     <!-- Logger root cho toàn bộ ứng dụng -->
