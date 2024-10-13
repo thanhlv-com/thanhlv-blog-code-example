@@ -1,7 +1,7 @@
 version: "3"
 services:
 #  kafka-gen:
-#    image: confluentinc/cp-kafka:7.4.4
+#    image: confluentinc/cp-kafka
 #    hostname: kafka-gen
 #    container_name: kafka-gen
 #    volumes:
@@ -10,7 +10,7 @@ services:
 #    command: "bash -c '/tmp/create_cluster_id.sh'"
 
   kafka1:
-    image: confluentinc/cp-kafka:7.4.4
+    image: confluentinc/cp-kafka
     hostname: kafka1
     container_name: kafka1
     ports:
@@ -42,7 +42,7 @@ services:
       - example-network
 
   kafka2:
-    image: confluentinc/cp-kafka:7.4.4
+    image: confluentinc/cp-kafka
     hostname: kafka2
     container_name: kafka2
     ports:
@@ -74,7 +74,7 @@ services:
       - example-network
 
   kafka3:
-    image: confluentinc/cp-kafka:7.4.4
+    image: confluentinc/cp-kafka
     hostname: kafka3
     container_name: kafka3
     ports:
@@ -105,7 +105,7 @@ services:
     networks:
       - example-network
   kafka4:
-    image: confluentinc/cp-kafka:7.4.4
+    image: confluentinc/cp-kafka
     hostname: kafka4
     container_name: kafka4
     ports:
@@ -136,7 +136,7 @@ services:
     networks:
       - example-network
   init-kafka:
-    image: confluentinc/cp-kafka:7.4.4
+    image: confluentinc/cp-kafka
     depends_on:
       - kafka1
       - kafka2
